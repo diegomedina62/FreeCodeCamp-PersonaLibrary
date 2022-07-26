@@ -4,6 +4,7 @@ const express     = require('express');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
 require('dotenv').config();
+const mongoose = require("mongoose")
 
 
 const apiRoutes         = require('./routes/api.js');
@@ -20,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //conection to mongo DataBase
-mongoose.connect(MONGO_URI).
+mongoose.connect(process.env.MONGO_URI).
   catch((error) => console.log(error));
 
 //Index page (static HTML)
