@@ -66,6 +66,7 @@ module.exports = function (app) {
         if(!comment){return res.status(200).send("missing required field comment")}
         const book = await Book.findById(bookid)
         if(!book){return res.status(200).send("no book exists")}
+        book.commentcount++
         book.comments.push(comment)
         const newComment = await book.save()
         res.status(200).json(newComment)
